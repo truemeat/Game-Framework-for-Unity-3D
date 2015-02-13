@@ -3,13 +3,39 @@ using System.Collections;
 
 public class BasePlayerManager : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public bool didInit;
+
+    //the user manager an AI controllers are publically accessible so that
+    //our individual control scripts can access them eadily
+    public BaseUserManager DataManager;
+
+
+    public virtual void Awake()
+    {
+        didInit = false;
+
+        Init();
+    }
+
+    public virtual void Init()
+    {
+        DataManager = gameObject.GetComponent<BaseUserManager>();
+
+        if (DataManager == null)
+            DataManager = gameObject.GetComponent<BaseUserManager>();
+
+        // do play init things in this function
+        didInit = true;
+    }
+
+    public virtual void GameFinished()
+    {
+        DataManager.SetIsFinished(true);
+    }
+
+    public virtual void GameStart()
+    {
+        DataManager.SetIsFinished(false);
+    }
+
 }
