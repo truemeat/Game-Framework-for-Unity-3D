@@ -18,7 +18,25 @@ public class BaseGameController : MonoBehaviour {
     public virtual void EnemyDestroyed(Vector3 aPosition, int pointsValue, int hitByID) { }
     public virtual void RestartGameButtonPressed()
     {
+        //reload the scene
         Application.LoadLevel(Application.loadedLevelName);
+    }
+    public bool Paused 
+    {
+        get { return paused; }
+        set 
+        { 
+            paused = value;
+            if (paused)
+            {
+                //pause time
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = 1;
+            }
+        }
     }
 
 }
