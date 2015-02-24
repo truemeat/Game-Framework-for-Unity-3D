@@ -9,7 +9,7 @@ public class ExtendedCustomMonoBehavior : MonoBehaviour {
 
     public Transform myTransform;
     public GameObject myGO;
-    public Rigidbody muBody;
+    public Rigidbody myBody;
 
     public bool didinit;
     public bool canControl;

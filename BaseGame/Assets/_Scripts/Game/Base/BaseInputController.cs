@@ -36,4 +36,47 @@ public class BaseInputController : MonoBehaviour {
         horz = Input.GetAxis("Horizontal");
         vert = Input.GetAxis("Vertical");
     }
+
+    public virtual float GetHorizontal()
+    {
+        // returns our cached horizontal input axis value
+        return horz;
+    }
+
+    public virtual float GetVertical()
+    {
+        // returns our cached vertical input axis value
+        return vert;
+    }
+    public virtual bool GetFire()
+    {
+        return Fire1;
+    }
+
+    public bool GetRespawn()
+    {
+        return shouldRespawn;
+    }
+
+    public virtual Vector3 GetMovementDirectionVector()
+    {
+        // temp vector for movement dir gets set to the value of an
+        // otherwise unused vector that always has the value of 0,0,0
+        TEMPVec3 = zeroVector;
+        // if we're going left or right, set the velocity vector's X
+        // to our horizontal input value
+        if (Left || Right)
+        {
+            TEMPVec3.x = horz;
+        }
+        // if we're goning Up or Down , set the velocity vector's Y 
+        // to our vertical input value
+        if (Up || Down)
+        {
+            TEMPVec3.y = vert;
+        }
+        // return the movement vector
+        return TEMPVec3;
+    }
+
 }
